@@ -1,7 +1,7 @@
 import os
 from pathlib import Path
 
-project_name = "helmet_detection"
+project_name = "Bike_helmet_detection"
 
 list_of_file = [
     ".github/workflows/.gitkeep"

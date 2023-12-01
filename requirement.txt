@@ -1,0 +1,14 @@
+numpy
+pandas
+matplotlib
+seaborn
+scipy
+python-box
+ipykernel
+dvc 
+pyYaml
+ensure
+types-pyYaml
+Flask
+Flask-cors
+-e .
