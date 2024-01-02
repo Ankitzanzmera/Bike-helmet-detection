@@ -1,12 +1,13 @@
 from Bike_helmet_detection.constants import *
-from Bike_helmet_detection.utils.common import create_directories,read_yaml
+from Bike_helmet_detection.utils.common import create_directories,read_yaml_file
 from Bike_helmet_detection.entity.config_entity import (DataIngestionConfig,
-                                                        DataValidationConfig)
+                                                        DataValidationConfig,
+                                                        ModelTrainerConfig)
 from pathlib import Path
 
 class ConfigrationManager:
     def __init__(self,config_filepath = CONFIG_FILEPATH) -> None:
-        self.config = read_yaml(config_filepath)
+        self.config = read_yaml_file(config_filepath)
         create_directories([self.config.artifacts_root])
     
     def get_data_ingestion_config(self) -> DataIngestionConfig:
@@ -34,3 +35,17 @@ class ConfigrationManager:
         )
 
         return data_validation_config
+
+    def get_model_trainer_config(self) -> ModelTrainerConfig:
+        temp_config = self.config.model_trainer
+        create_directories([temp_config.root_dir])
+
+        model_trainer_config = ModelTrainerConfig(
+            root_dir= Path(temp_config.root_dir),
+            model_pretrained_weight_name=temp_config.model_pretrained_weight_name,
+            dataset_yaml_file= Path(temp_config.dataset_yaml_file),
+            EPOCHS=temp_config.EPOCHS,
+            BATCH_SIZE= temp_config.BATCH_SIZE
+        )
+
+        return model_trainer_config

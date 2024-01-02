@@ -1,14 +1,14 @@
 import os,sys
 from Bike_helmet_detection.utils.logger import logger
 from Bike_helmet_detection.utils.exception import CustomException
-from Bike_helmet_detection.utils.common import read_yaml
+from Bike_helmet_detection.utils.common import read_yaml_file
 from Bike_helmet_detection.constants import *
 from Bike_helmet_detection.entity.config_entity import DataValidationConfig
 
 class DataValidation:
     def __init__(self,data_validation_config:DataValidationConfig):
         self.data_validation_config = data_validation_config
-        self.data_ingestion_config = read_yaml(CONFIG_FILEPATH).data_ingestion
+        self.data_ingestion_config = read_yaml_file(CONFIG_FILEPATH).data_ingestion
 
     def validate_all_file_exist(self) -> bool:
         try:
