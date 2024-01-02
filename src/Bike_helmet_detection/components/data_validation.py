@@ -24,6 +24,8 @@ class DataValidation:
                     validation_status  = True
                     with open(self.data_validation_config.data_validation_status_file,'w') as f:
                         f.write(f'Validation_status : {validation_status}')
-            logger.info(f"Validation status file Created Successfully and status is : {validation_status}")
+            logger.info(f"Validation status file Created Successfully")
+            if not validation_status:
+                sys.exit("Exiting Due to Validation Failed")
         except Exception as e:
             raise CustomException(e,sys)
