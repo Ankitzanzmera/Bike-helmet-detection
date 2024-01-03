@@ -2,7 +2,7 @@ artifacts_root: artifacts
 
 data_ingestion:
   root_dir: artifacts/data_ingestion
-  source: https://drive.google.com/uc?id=1mFOfDcOlMbPRuSlDJOk1iQfYJtkPZliQ
+  source: https://drive.google.com/uc?id=1JInB1MwT8Nhy4NDObIV1gMG4RuW4QSeH
   local_data_file: artifacts/data_ingestion/data.zip
   unzip_dir: artifacts/data_ingestion/helmet_data/
 

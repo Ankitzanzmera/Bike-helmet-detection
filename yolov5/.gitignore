@@ -35,6 +35,9 @@ data/images/*
 !data/images/bus.jpg
 !data/*.sh
 
+## Personal
+best.py
+
 results*.csv
 
 # Datasets -------------------------------------------------------------------------------------------------------------

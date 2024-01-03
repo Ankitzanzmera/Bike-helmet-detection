@@ -36,13 +36,14 @@ class ModelTrainer:
         save_yaml(f'yolov5/models/custom_{model_name}.yaml',yolo_model_config)
         logger.info('Saved Custom Yolo config')
         
-        ##>>>>>>>>>>>>>>>>>>>>>>> Use Git Bash for following Commands <<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+        ## >>>>>>>>>>>>>>>>>>>>>>> Use Git Bash for following Commands <<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
         os.system(f"cp {self.data_ingestion_config.local_data_file} {os.getcwd()}")
         os.system(f"unzip data.zip")
 
 
         os.system(f"cd yolov5/ && python train.py --img 416 --batch {self.model_trainer_config.BATCH_SIZE} --epochs {self.model_trainer_config.EPOCHS} --data ../data.yaml --cfg ./models/custom_yolov5s.yaml --weights {self.model_trainer_config.model_pretrained_weight_name} --name yolov5_results --cache")
+        os.system(f"cp yolov5/runs/train/yolov5_results/weights/best.pt yolov5/")
         os.system(f"cp yolov5/runs/train/yolov5_results/weights/best.pt {self.model_trainer_config.root_dir}")
 
         os.system("rm -rf test")
@@ -51,9 +52,3 @@ class ModelTrainer:
         os.system("rm -rf data.yaml")
         os.system("rm -rf data.zip")
         os.system("rm -rf yolov5/runs")   
-
-
-
-
-
-

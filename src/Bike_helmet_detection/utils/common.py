@@ -1,9 +1,10 @@
-import os,sys
-from pathlib import Path
-from ensure import ensure_annotations
-from box import ConfigBox
-from box.exceptions import BoxValueError
 import yaml
+import os,sys
+import base64
+from pathlib import Path
+from box import ConfigBox
+from ensure import ensure_annotations
+from box.exceptions import BoxValueError
 from Bike_helmet_detection.utils.exception import CustomException
 
 @ensure_annotations
@@ -41,3 +42,15 @@ def save_yaml(path,content):
             yaml.dump(content,f)
     except Exception as e:
         raise CustomException(e,sys)
+    
+def decodeImage(imgstring,filename):
+    imgdata = base64.b64decode(imgstring)
+    save_directory = "./inference_data/"
+    os.makedirs(save_directory,exist_ok= True)
+    with open(os.path.join(save_directory,filename),"wb") as file_obj:
+        file_obj.write(imgdata)
+        file_obj.close
+
+def encodeImageintobase64(croppedImagePath):
+    with open(croppedImagePath,"rb") as file_obj:
+        return base64.b64encode(file_obj.read())
